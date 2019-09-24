@@ -24,9 +24,13 @@ functions.get = function(URL, qs) {
     })
 }
 
-functions.post = function(URL, data, headers) {
+functions.post = function(URL, data, headers, qs) {
+    if (!qs) {
+        qs = {}
+    }
     return new Promise(function (resolve, reject) {
         let options = {
+            qs: qs,
             headers: headers || {
                 "Content-Type": "application/json"
             },
@@ -47,9 +51,13 @@ functions.post = function(URL, data, headers) {
     })
 }
 
-functions.put = function(URL, data, headers) {
+functions.put = function(URL, data, headers, qs) {
+    if (!qs) {
+        qs = {}
+    }
     return new Promise(function (resolve, reject) {
         let options = {
+            qs: qs,
             headers: headers || {
                 "Content-Type": "application/json"
             },
