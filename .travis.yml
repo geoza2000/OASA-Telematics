@@ -21,7 +21,7 @@ install:
   - docker-compose up -d
 
 script:
-  - docker ps | grep -q OASA
+  - docker ps | grep -q asdfzxcvrfs
 
 after_script:
   - docker-compose stop
