@@ -1,7 +1,7 @@
 # OASA Telematics
 
 ## Description
-This is an API helping me and you implementing the OASA API in a more normal way by parsing a mash of data.
+This is an API helping me and you implementing the OASA API in a more normal way by parsing a mesh of data.
 
 ## Getting started
 
