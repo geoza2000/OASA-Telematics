@@ -6,17 +6,14 @@ services:
   - docker
 
 env:
-  - COMPOSE_VERSION=1.5.2
+  - DOCKER_COMPOSE_VERSION=1.12.0
 
 before_install:
   # Docker Compose Install 
-  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  # Download and install Docker libs
-  - curl -L https://github.com/Ortus-Solutions/docker-buildfiles/archive/master.zip > docker.zip
-  - unzip docker.zip -d workbench
-  - mv workbench/docker-buildfiles-master workbench/docker
 
 install:
   # Docker CFML Server Tests
