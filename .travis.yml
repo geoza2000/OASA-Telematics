@@ -9,10 +9,6 @@ env:
   - DOCKER_COMPOSE_VERSION=1.24.0
 
 before_install:
-  # Updating...
-  - sudo apt-get update
-  # Updating Docker Engine
-  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
   # Updating Docker Compose 
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
