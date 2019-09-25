@@ -1,1 +1,11 @@
 language: node_js
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: Docker Compose Run
+      env: step=runningDockerCompose
+      script:
+      - docker-compose up --build
