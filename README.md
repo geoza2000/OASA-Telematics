@@ -1,4 +1,4 @@
-# OASA Telematics
+# OASA Telematics [![Build Status](https://travis-ci.org/geoza2000/OASA-Telematics.png?branch=master)](https://travis-ci.org/geoza2000/OASA-Telematics)
 
 ## Description
 This is an API helping me and you implementing the OASA API in a more normal way by parsing a mesh of data.
