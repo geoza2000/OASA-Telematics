@@ -1,11 +1,33 @@
 language: node_js
 
+sudo: required
+
 services:
   - docker
 
-jobs:
-  include:
-    - stage: Docker Compose Run
-      env: step=runningDockerCompose
-      script:
-      - docker-compose up --build
+env:
+  - COMPOSE_VERSION=1.5.2
+
+before_install:
+  # Docker Compose Install 
+  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  # Download and install Docker libs
+  - curl -L https://github.com/Ortus-Solutions/docker-buildfiles/archive/master.zip > docker.zip
+  - unzip docker.zip -d workbench
+  - mv workbench/docker-buildfiles-master workbench/docker
+
+install:
+  # Docker CFML Server Tests
+  - docker-compose build
+  - docker-compose up -d
+
+before_script:
+  # Startup the app
+  - curl http://localhost:3000/
+  - curl http://localhost:3000/lines
+
+after_script:
+  - docker-compose stop
+  - docker-compose rm -f
