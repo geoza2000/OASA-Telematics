@@ -6,7 +6,7 @@ services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.12.0
+  - DOCKER_COMPOSE_VERSION=1.8.0
 
 before_install:
   # Updating Docker
