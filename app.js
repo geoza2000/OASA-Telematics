@@ -1,6 +1,9 @@
 //Dependencies
 const express = require('express')
 
+//Services
+const cache = require('./services/cache')
+
 //Routes
 const routes = require('./routes')
 
@@ -9,6 +12,8 @@ const PUBLIC_PORT = 3000
 
 //Init
 const app = express()
+
+cache.init()
 
 app.use('/', routes)
 
