@@ -16,9 +16,9 @@ module.exports = (req, res) => {
                 }
             })
         });
-        res.send(lines)
+        res.send({data: lines})
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send({error: err})
     })
 
 }
