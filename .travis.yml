@@ -20,7 +20,7 @@ install:
   - docker-compose build
   - docker-compose up -d
 
-before_script:
+script:
   # Startup the app
   - curl http://localhost:3000/lines
 
