@@ -22,7 +22,6 @@ install:
 
 before_script:
   # Startup the app
-  - curl http://localhost:3000/
   - curl http://localhost:3000/lines
 
 after_script:
