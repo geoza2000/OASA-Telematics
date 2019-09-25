@@ -3,12 +3,17 @@ const helper = require('../../services/helper')
 const cache = require('../../services/cache')
 
 //Const
-const CACHE_KEY = "masterlines"
+const MASTERLINE_CACHE_KEY = "masterlines"
+const LINES_WITH_ML_CACHE_KEY = "linesWithML"
 const CACHE_TTL = 43200
 
-module.exports = (req, res) => {
+Array.prototype.move = function(from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+};
 
-    const cached_data = cache.get(CACHE_KEY)
+module.exports = async (req, res) => {
+
+    var cached_data = cache.get(MASTERLINE_CACHE_KEY)
 
     if (cached_data) {
 
@@ -16,26 +21,64 @@ module.exports = (req, res) => {
 
     } else {
 
+        var cached_lines = cache.get(LINES_WITH_ML_CACHE_KEY)
+
+        if (!cached_lines) {
+
+            await helper.get('http://telematics.oasa.gr/api', {"act": "webGetLinesWithMLInfo"}).then(response => {
+                
+                var buffer = []
+
+                response.forEach(line => {
+                    buffer.push({
+                        code: line["line_code"],
+                        id: line["line_id"],
+                        schedule: line["sdc_code"],
+                        masterline: line["ml_code"],
+                        parent: line["mld_master"] == 1 ? true : false,
+                        desc: {
+                            el: line["line_descr"],
+                            en: line["line_descr_eng"]
+                        }
+                    })
+                })
+
+                const data = {
+                    data: buffer
+                }
+                cache.set(LINES_WITH_ML_CACHE_KEY, data, CACHE_TTL)
+                cached_lines = data
+            })
+        }
+
+
+
         var masterlines = []
 
         helper.get('http://telematics.oasa.gr/api', {"act": "webGetMasterLines"}).then(response => {
             response.forEach(masterline => {
+                var lines = cached_lines.data.filter(line => line.masterline == masterline["ml_code"])
+                for (line in lines) {
+                    if (line != 0 && lines[line].parent && lines[line].code == masterline["line_code"]) {
+                        lines.move(line, 0)
+                    }
+                }
                 masterlines.push({
                     code: masterline["ml_code"],
                     id: masterline["ml_id"],
-                    parent_line: masterline["line_code"],
                     schedule: masterline["sdc_code"],
                     desc: {
                         el: masterline["ml_descr"],
                         en: masterline["ml_descr_eng"]
-                    }
+                    },
+                    lines: lines
                 })
             });
 
             const data = {
                 data: masterlines
             }
-            cache.set(CACHE_KEY, data, CACHE_TTL)
+            cache.set(MASTERLINE_CACHE_KEY, data, CACHE_TTL)
 
             res.send(data)
         }).catch(err => {
