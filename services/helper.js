@@ -1,8 +1,6 @@
 var request = require('request')
 
-var functions = {}
-
-functions.get = function(URL, qs) {
+exports.get = function(URL, qs) {
     if (!qs) {
         qs = {}
     }
@@ -24,7 +22,7 @@ functions.get = function(URL, qs) {
     })
 }
 
-functions.post = function(URL, data, headers, qs) {
+exports.post = function(URL, data, headers, qs) {
     if (!qs) {
         qs = {}
     }
@@ -51,7 +49,7 @@ functions.post = function(URL, data, headers, qs) {
     })
 }
 
-functions.put = function(URL, data, headers, qs) {
+exports.put = function(URL, data, headers, qs) {
     if (!qs) {
         qs = {}
     }
@@ -77,5 +75,3 @@ functions.put = function(URL, data, headers, qs) {
         })
     })
 }
-
-module.exports = functions
