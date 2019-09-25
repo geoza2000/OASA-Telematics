@@ -21,8 +21,7 @@ install:
   - docker-compose up -d
 
 script:
-  # Startup the app
-  - curl http://localhost:3000/lines
+  - docker ps | grep -q OASA
 
 after_script:
   - docker-compose stop
