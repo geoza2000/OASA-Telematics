@@ -14,8 +14,13 @@ Array.prototype.move = function(from, to) {
 module.exports = async (req, res) => {
 
     var cached_data = cache.get(MASTERLINE_CACHE_KEY)
+    const masterline_code = req.params["code"]
 
     if (cached_data) {
+
+        if (masterline_code) {
+            cached_data.data = cached_data.data.find(line => line.code == req.params["code"])
+        }
 
         res.send(cached_data)
 
@@ -79,6 +84,12 @@ module.exports = async (req, res) => {
                 data: masterlines
             }
             cache.set(MASTERLINE_CACHE_KEY, data, CACHE_TTL)
+
+            if (masterline_code){
+                data = {
+                    data: masterlines.find(masterline => masterline.code == masterline_code)
+                }
+            }
 
             res.send(data)
         }).catch(err => {

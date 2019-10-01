@@ -9,5 +9,6 @@ router.get('/lines', lines)
 router.get('/lines/:code', lines)
 
 router.get('/masterlines', masterlines)
+router.get('/masterlines/:code', masterlines)
 
 module.exports = router
