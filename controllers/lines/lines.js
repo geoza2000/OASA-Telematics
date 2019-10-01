@@ -14,7 +14,7 @@ module.exports = (req, res) => {
     if (cached_data) {
 
         if (line_code) {
-            cached_data.data = cached_data.data.find(line => line.code == req.params["code"])
+            cached_data.data = cached_data.data.find(line => line.code == line_code)
         }
 
         res.send(cached_data)
