@@ -9,8 +9,13 @@ const CACHE_TTL = 43200
 module.exports = (req, res) => {
 
     const cached_data = cache.get(CACHE_KEY)
+    const line_code = req.params["code"]
 
     if (cached_data) {
+
+        if (line_code) {
+            cached_data.data = cached_data.data.find(line => line.code == req.params["code"])
+        }
 
         res.send(cached_data)
 
@@ -30,10 +35,16 @@ module.exports = (req, res) => {
                 })
             });
 
-            const data = {
+            var data = {
                 data: lines
             }
             cache.set(CACHE_KEY, data, CACHE_TTL)
+
+            if (line_code){
+                data = {
+                    data: lines.find(line => line.code == line_code)
+                }
+            }
 
             res.send(data)
         }).catch(err => {
