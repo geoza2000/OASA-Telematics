@@ -20,45 +20,46 @@ module.exports = (req, res) => {
             cached_data.data = cached_data.data.find(route => route.code == ROUTE_CODE)
         }
 
-        res.send(cached_data)
+        cached_data.data ? res.send(cached_data) : error.notFound(res)        
 
     } else {
 
         var routes = []
 
         helper.get('http://telematics.oasa.gr/api', {"act": "webGetRoutes", "p1": LINE_CODE}).then(response => {
-            const isCircleRoute = !response.find(route => route["RouteType"] == 2)
-            response.forEach(route => {
-                routes.push({
-                    code: route["RouteCode"],
-                    distance: route["RouteDistance"],
-                    type: isCircleRoute ? "circle" : route["RouteType"] == 1 ? "go" : "come",
-                    desc: {
-                        el: route["RouteDescrEng"],
-                        en: route["LineDescrEng"]
+            
+            if (response.length > 0) {
+                const isCircleRoute = !response.find(route => route["RouteType"] == 2)
+                response.forEach(route => {
+                    routes.push({
+                        code: route["RouteCode"],
+                        distance: route["RouteDistance"],
+                        type: isCircleRoute ? "circle" : route["RouteType"] == 1 ? "go" : "come",
+                        desc: {
+                            el: route["RouteDescrEng"],
+                            en: route["LineDescrEng"]
+                        }
+                    })
+                });
+
+                var data = {
+                    data: routes
+                }
+                cache.set(CACHE_KEY, data, CACHE_TTL)
+
+                if (ROUTE_CODE){
+                    data = {
+                        data: routes.find(route => route.code == ROUTE_CODE)
                     }
-                })
-            });
+                }
 
-            var data = {
-                data: routes
-            }
-            cache.set(CACHE_KEY, data, CACHE_TTL)
-
-            if (ROUTE_CODE){
-                data = {
-                    data: routes.find(route => route.code == ROUTE_CODE)
+                if (data.data) {
+                    res.send(data)
                 }
             }
-
-            res.send(data)
-        }).catch(err => {
-
-            const error = {
-                error: err
-            }
-            res.status(500).send(error)
-        })
+            error.notFound(res)  
+            
+        }).catch(err => error.internal(err))
     }
 
 }

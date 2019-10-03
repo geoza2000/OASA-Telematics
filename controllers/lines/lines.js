@@ -1,6 +1,7 @@
 //Services
 const helper = require('../../services/helper')
 const cache = require('../../services/cache')
+const error = require('../../services/error')
 
 //Const
 const CACHE_KEY = "lines"
@@ -17,44 +18,45 @@ module.exports = (req, res) => {
         if (LINE_CODE) {
             cached_data.data = cached_data.data.find(line => line.code == LINE_CODE)
         }
-
-        res.send(cached_data)
+   
+        cached_data.data ? res.send(cached_data) : error.notFound(res)        
 
     } else {
 
         var lines = []
 
         helper.get('http://telematics.oasa.gr/api', {"act": "webGetLines"}).then(response => {
-            response.forEach(line => {
-                lines.push({
-                    code: line["LineCode"],
-                    id: line["LineID"],
-                    desc: {
-                        el: line["LineDescr"],
-                        en: line["LineDescrEng"]
+            
+            if (response.length > 0) {
+                response.forEach(line => {
+                    lines.push({
+                        code: line["LineCode"],
+                        id: line["LineID"],
+                        desc: {
+                            el: line["LineDescr"],
+                            en: line["LineDescrEng"]
+                        }
+                    })
+                });
+
+                var data = {
+                    data: lines
+                }
+                cache.set(CACHE_KEY, data, CACHE_TTL)
+
+                if (LINE_CODE){
+                    data = {
+                        data: lines.find(line => line.code == LINE_CODE)
                     }
-                })
-            });
+                }
 
-            var data = {
-                data: lines
-            }
-            cache.set(CACHE_KEY, data, CACHE_TTL)
-
-            if (LINE_CODE){
-                data = {
-                    data: lines.find(line => line.code == LINE_CODE)
+                if (data.data) {
+                    res.send(data)
                 }
             }
+            error.notFound(res)  
 
-            res.send(data)
-        }).catch(err => {
-
-            const error = {
-                error: err
-            }
-            res.status(500).send(error)
-        })
+        }).catch(err => error.internal(err))
     }
 
 }
