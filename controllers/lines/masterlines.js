@@ -12,14 +12,15 @@ Array.prototype.move = function(from, to) {
 };
 
 module.exports = async (req, res) => {
+    //Const
+    const MASTERLINE_CODE = req.params["masterline"]
 
     var cached_data = cache.get(MASTERLINE_CACHE_KEY)
-    const masterline_code = req.params["code"]
 
     if (cached_data) {
 
-        if (masterline_code) {
-            cached_data.data = cached_data.data.find(masterline => masterline.code == rmasterline_code)
+        if (MASTERLINE_CODE) {
+            cached_data.data = cached_data.data.find(masterline => masterline.code == rMASTERLINE_CODE)
         }
 
         res.send(cached_data)
@@ -85,9 +86,9 @@ module.exports = async (req, res) => {
             }
             cache.set(MASTERLINE_CACHE_KEY, data, CACHE_TTL)
 
-            if (masterline_code){
+            if (MASTERLINE_CODE){
                 data = {
-                    data: masterlines.find(masterline => masterline.code == masterline_code)
+                    data: masterlines.find(masterline => masterline.code == MASTERLINE_CODE)
                 }
             }
 

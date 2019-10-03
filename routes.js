@@ -3,12 +3,15 @@ const router = require('express').Router()
 
 //Constrollers
 const lines = require('./controllers/lines/lines')
+const routes = require('./controllers/lines/routes')
 const masterlines = require('./controllers/lines/masterlines')
 
 router.get('/lines', lines)
-router.get('/lines/:code', lines)
+router.get('/lines/:line', lines)
+router.get('/lines/:line/routes', routes)
+router.get('/lines/:line/routes/:route', routes)
 
 router.get('/masterlines', masterlines)
-router.get('/masterlines/:code', masterlines)
+router.get('/masterlines/:masterline', masterlines)
 
 module.exports = router
