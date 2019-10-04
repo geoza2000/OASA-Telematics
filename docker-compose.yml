@@ -1,7 +1,11 @@
 version: "3.7"
 
+networks:
+  nginx:
+    external: true
+
 services: 
-  OASA-API:
+  oasa-api:
     image: geoza/oasa-backend
     container_name: OASA-API
     build:
@@ -10,3 +14,5 @@ services:
     restart: always
     ports: 
       - "3000:3000"
+    networks: 
+      - nginx
