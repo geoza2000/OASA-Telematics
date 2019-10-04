@@ -17,6 +17,7 @@ before_install:
 
 install:
   # Docker CFML Server Tests
+  - docker network create nginx
   - docker-compose build
   - docker-compose up -d
 
