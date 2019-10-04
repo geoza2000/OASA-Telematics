@@ -1,8 +1,9 @@
 version: "3.7"
 
 services: 
-  OASA-Backend:
+  OASA-API:
     image: geoza/oasa-backend
+    container_name: OASA-API
     build:
       context: ./
       dockerfile: Dockerfile
