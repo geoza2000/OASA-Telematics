@@ -1,7 +1,7 @@
 //Services
-const helper = require('../../services/helper')
-const cache = require('../../services/cache')
-const error = require('../../services/error')
+const helper = require('../../../services/helper')
+const cache = require('../../../services/cache')
+const error = require('../../../services/error')
 
 //Const
 const CACHE_TTL = 43200
