@@ -55,6 +55,7 @@ module.exports = (req, res) => {
 
                 if (data.data) {
                     res.send(data)
+                    return
                 }
             }
             error.notFound(res)  

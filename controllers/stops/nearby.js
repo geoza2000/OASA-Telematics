@@ -40,6 +40,7 @@ module.exports = (req, res) => {
                     data: stops
                 }
                 res.send(data)
+                return
             }
             error.notFound(res)  
 
