@@ -2,7 +2,7 @@
 const helper = require('../../services/helper')
 const error = require('../../services/error')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     //Const
     const LAT = req.query["lat"]
     const LNG = req.query["lng"]
@@ -11,7 +11,7 @@ module.exports = (req, res) => {
 
         var stops = []
 
-        helper.get('http://telematics.oasa.gr/api', {"act": "getClosestStops", "p1": LAT, "p2": LNG}).then(response => {
+        await helper.get('http://telematics.oasa.gr/api', {"act": "getClosestStops", "p1": LAT, "p2": LNG}).then(response => {
             
             if (response.length > 0) {
                 response.forEach(stop => {
