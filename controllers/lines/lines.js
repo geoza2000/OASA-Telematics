@@ -25,7 +25,7 @@ module.exports = (req, res) => {
 
         var lines = []
 
-        helper.get('http://telematics.oasa.gr/api', {"act": "webGetLines"}).then(response => {
+        helper.get('http://195.46.22.91/api', {"act": "webGetLines"}).then(response => {
             
             if (response.length > 0) {
                 response.forEach(line => {

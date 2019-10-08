@@ -26,7 +26,7 @@ module.exports = (req, res) => {
 
         var routes = []
 
-        helper.get('http://telematics.oasa.gr/api', {"act": "webGetRoutes", "p1": LINE_CODE}).then(response => {
+        helper.get('http://195.46.22.91/api', {"act": "webGetRoutes", "p1": LINE_CODE}).then(response => {
             
             if (response.length > 0) {
                 const isCircleRoute = !response.find(route => route["RouteType"] == 2)

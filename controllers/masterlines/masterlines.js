@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
 
         if (!cached_lines) {
 
-            await helper.get('http://telematics.oasa.gr/api', {"act": "webGetLinesWithMLInfo"}).then(response => {
+            await helper.get('http://195.46.22.91/api', {"act": "webGetLinesWithMLInfo"}).then(response => {
                 
                 var buffer = []
 
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
 
         var masterlines = []
 
-        helper.get('http://telematics.oasa.gr/api', {"act": "webGetMasterLines"}).then(response => {
+        helper.get('http://195.46.22.91/api', {"act": "webGetMasterLines"}).then(response => {
 
             if (response.length > 0) {
                 response.forEach(masterline => {

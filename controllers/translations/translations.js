@@ -19,7 +19,7 @@ module.exports = (req, res) => {
 
         var translations = []
 
-        helper.get('http://telematics.oasa.gr/api', {"act": "webGetLangs"}).then(response => {
+        helper.get('http://195.46.22.91/api', {"act": "webGetLangs"}).then(response => {
             
             if (response.length > 0) {
                 response.forEach(translation => {

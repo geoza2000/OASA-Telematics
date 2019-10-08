@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
         var stops = []
 
-        await helper.get('http://telematics.oasa.gr/api', {"act": "getClosestStops", "p1": LAT, "p2": LNG}).then(response => {
+        await helper.get('http://195.46.22.91/api', {"act": "getClosestStops", "p1": LAT, "p2": LNG}).then(response => {
             
             if (response.length > 0) {
                 response.forEach(stop => {
