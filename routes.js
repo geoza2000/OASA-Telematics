@@ -1,5 +1,7 @@
 //Dependencies
 const router = require('express').Router()
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 //Constrollers
 const lines = require('./controllers/lines/lines')
@@ -14,6 +16,11 @@ const nearby = require('./controllers/stops/nearby/nearby')
 
 const translations = require('./controllers/translations/translations')
 
+router.all('/', function(req, res) {
+    res.redirect('/api-docs');
+})
+router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+router.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 router.get('/lines', lines)
 router.get('/lines/:line', lines)
