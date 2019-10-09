@@ -101,7 +101,7 @@ module.exports = async (req, res) => {
                 }
             }
             error.notFound(res)
-        }).catch(err => error.internal(err))
+        }).catch(err => error.internal(res, err))
     }
 
 }

@@ -69,7 +69,7 @@ module.exports = (req, res) => {
             }
             error.notFound(res)  
 
-        }).catch(err => error.internal(err))
+        }).catch(err => error.internal(res, err))
 }
 
 }
