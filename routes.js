@@ -7,7 +7,7 @@ const routes = require('./controllers/lines/routes/routes')
 
 const masterlines = require('./controllers/masterlines/masterlines')
 
-const nearby = require('./controllers/stops/nearby')
+const nearby = require('./controllers/stops/nearby/nearby')
 
 const translations = require('./controllers/translations/translations')
 

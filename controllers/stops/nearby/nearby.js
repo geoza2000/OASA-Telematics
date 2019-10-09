@@ -1,6 +1,6 @@
 //Services
-const helper = require('../../services/helper')
-const error = require('../../services/error')
+const helper = require('../../../services/helper')
+const error = require('../../../services/error')
 
 module.exports = async (req, res) => {
     //Const
