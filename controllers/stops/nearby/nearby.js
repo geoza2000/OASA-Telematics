@@ -27,7 +27,8 @@ module.exports = async (req, res) => {
                             street: {
                                 el: stop["StopStreet"],
                                 en: stop["StopStreetEng"]
-                            },coords: {
+                            },
+                            coords: {
                                 lat: stop["StopLat"],
                                 lng: stop["StopLng"]
                             }
