@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     if (cached_data) {
 
         if (MASTERLINE_CODE) {
-            cached_data.data = cached_data.data.find(masterline => masterline.code == rMASTERLINE_CODE)
+            cached_data.data = cached_data.data.find(masterline => masterline.code == MASTERLINE_CODE)
         }
 
         cached_data.data ? res.send(cached_data) : error.notFound(res)        
