@@ -7,6 +7,7 @@ const routes = require('./controllers/lines/routes/routes')
 
 const masterlines = require('./controllers/masterlines/masterlines')
 
+const stop = require('./controllers/stops/stop')
 const nearby = require('./controllers/stops/nearby/nearby')
 
 const translations = require('./controllers/translations/translations')
@@ -20,6 +21,7 @@ router.get('/lines/:line/routes/:route', routes)
 router.get('/masterlines', masterlines)
 router.get('/masterlines/:masterline', masterlines)
 
+router.get('/stops/:stop', stop)
 router.get('/stops/nearby', nearby)
 
 router.get('/translations', translations)
