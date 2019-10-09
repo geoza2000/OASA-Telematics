@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     //Const
     const LINE_CODE = req.params["line"]
     const ROUTE_CODE = req.params["route"]
-    const CACHE_KEY = "line_" + LINE_CODE + "_route"
+    const CACHE_KEY = "line_" + LINE_CODE + "_routes"
 
     const cached_data = cache.get(CACHE_KEY)
 
