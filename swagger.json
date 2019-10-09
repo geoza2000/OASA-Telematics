@@ -1,0 +1,375 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0",
+		"title": "OASA-Telematics",
+		"description": "This is an API helping me and you implementing the OASA API in a more normal way by parsing a mesh of data. <br><br> To learn more about this project follow the link <br> https://github.com/geoza2000/OASA-Telematics",
+		"contact": {}
+	},
+	"host": "oasa-telematics.com",
+	"basePath": "/v1",
+	"schemes": [
+		"https"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/lines": {
+			"get": {
+				"description": "Get all lines available",
+				"summary": "GetLines",
+				"tags": [
+					"Lines"
+				],
+				"operationId": "LinesGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/lines/{line}": {
+			"get": {
+				"description": "Get informations about a line.",
+				"summary": "GetLine",
+				"tags": [
+					"Lines"
+				],
+				"operationId": "LinesByLineGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "line",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/lines/{line}/routes": {
+			"get": {
+				"description": "Get all available routes for line.",
+				"summary": "GetRoutesForLine",
+				"tags": [
+					"Lines"
+				],
+				"operationId": "LinesRoutesByLineGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "line",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/lines/{line}/routes/{route}": {
+			"get": {
+				"description": "Get specific route info about a line.",
+				"summary": "GetRouteForLine",
+				"tags": [
+					"Lines"
+				],
+				"operationId": "LinesRoutesByLineAndRouteGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "line",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					},
+					{
+						"name": "route",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/stops/nearby": {
+			"get": {
+				"description": "Find nearby stops.",
+				"summary": "Neraby",
+				"tags": [
+					"Stops"
+				],
+				"operationId": "StopsNearbyGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "lat",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "latitude"
+					},
+					{
+						"name": "lng",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "longitude"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/stops/{stop}": {
+			"get": {
+				"description": "Get stop informations.",
+				"summary": "GetStop",
+				"tags": [
+					"Stops"
+				],
+				"operationId": "StopsByStopGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "stop",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/stops/{stop}/routes": {
+			"get": {
+				"description": "Get all routes that visit a stop.",
+				"summary": "GetRoutesForStop",
+				"tags": [
+					"Stops"
+				],
+				"operationId": "StopsRoutesByStopGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "stop",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/stops/{stop}/routes/{route}": {
+			"get": {
+				"description": "Get specificroute informations about a stop route.",
+				"summary": "GetRouteForStop",
+				"tags": [
+					"Stops"
+				],
+				"operationId": "StopsRoutesByStopAndRouteGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "stop",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					},
+					{
+						"name": "route",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/stops/{stop}/arrivals": {
+			"get": {
+				"description": "Get arrivals on a stop.",
+				"summary": "GetArrivalsForStop",
+				"tags": [
+					"Stops"
+				],
+				"operationId": "StopsArrivalsByStopGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "stop",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/masterlines": {
+			"get": {
+				"description": "Get all masterlines with their lines.",
+				"summary": "GetMasterlines",
+				"tags": [
+					"Masterlines"
+				],
+				"operationId": "MasterlinesGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/masterlines/{masterline}": {
+			"get": {
+				"description": "Get masterline informations.",
+				"summary": "GetMasterline",
+				"tags": [
+					"Masterlines"
+				],
+				"operationId": "MasterlineGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "masterline",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/translations": {
+			"get": {
+				"description": "TODO: Add Description",
+				"summary": "GetTranslations",
+				"tags": [
+					"Transaltions"
+				],
+				"operationId": "TranslationsGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		}
+	},
+	"tags": [{
+			"name": "Lines"
+		},
+		{
+			"name": "Stops"
+		},
+		{
+			"name": "Masterlines"
+		},
+		{
+			"name": "Transaltions"
+		}
+	]
+}

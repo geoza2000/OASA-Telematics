@@ -1,5 +1,7 @@
 //Dependencies
 const express = require('express')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 //Services
 const cache = require('./services/cache')
@@ -8,13 +10,15 @@ const cache = require('./services/cache')
 const routes = require('./routes')
 
 //Const
-const PUBLIC_PORT = 3000
+const PORT = process.env.PORT || 3000;
 
 //Init
 const app = express()
 
 cache.init()
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', routes)
 
-app.listen(PUBLIC_PORT, () => console.log('OASA listening on port ' + PUBLIC_PORT))
+app.listen(PORT, () => console.log('OASA listening on port ' + PORT))
