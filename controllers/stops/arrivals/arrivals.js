@@ -23,7 +23,6 @@ module.exports = (req, res) => {
             var data = {
                 data: arrivals
             }
-            cache.set(CACHE_KEY, data, CACHE_TTL)
 
             if (data.data) {
                 res.send(data)
