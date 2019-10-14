@@ -1,6 +1,8 @@
 //Dependencies
 const router = require('express').Router()
 const swaggerUi = require('swagger-ui-express');
+
+//Imports
 const swaggerDocument = require('./swagger.json');
 
 //Constrollers
