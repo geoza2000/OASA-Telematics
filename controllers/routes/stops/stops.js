@@ -9,6 +9,7 @@ const CACHE_TTL = 43200
 module.exports = (req, res) => {
     //Const
     const ROUTE_CODE = req.params["route"]
+    const STOP_CODE = req.params["stop"]
     const CACHE_KEY = "route_" + ROUTE_CODE
 
     const cached_data = cache.get(CACHE_KEY)
@@ -16,7 +17,11 @@ module.exports = (req, res) => {
     if (cached_data) {
 
         const stops_only = {
-            stops: cached_data.data.stops
+            data: cached_data.data.stops
+        }
+
+        if (STOP_CODE) {
+            stops_only.data = stops_only.data.find(stop => stop.code == STOP_CODE)
         }
    
         stops_only.data ? res.send(stops_only) : error.notFound(res)
@@ -78,6 +83,10 @@ module.exports = (req, res) => {
 
                 const stops_only = {
                     data: stops
+                }
+
+                if (STOP_CODE) {
+                    stops_only.data = stops_only.data.find(stop => stop.code == STOP_CODE)
                 }
 
                 if (stops_only.data) {
