@@ -357,6 +357,190 @@
 					}
 				}
 			}
+		},
+		"/routes/{route}/buses": {
+			"get": {
+				"description": "Get active buses on the route.",
+				"summary": "GetBusesOnRoute",
+				"tags": [
+					"Routes"
+				],
+				"operationId": "BusesOnRouteGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "route",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/routes/{route}/buses/{bus}": {
+			"get": {
+				"description": "Get bus information on the route.",
+				"summary": "GetBusOnRoute",
+				"tags": [
+					"Routes"
+				],
+				"operationId": "BusOnRouteGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "route",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				{
+					"name": "bus",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/routes/{route}/name": {
+			"get": {
+				"description": "Get route name.",
+				"summary": "GetRouteName",
+				"tags": [
+					"Routes"
+				],
+				"operationId": "RouteNameGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "route",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/routes/{route}/path": {
+			"get": {
+				"description": "Get route path detailed info.",
+				"summary": "GetPathForRoute",
+				"tags": [
+					"Routes"
+				],
+				"operationId": "PathForRouteGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "route",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/routes/{route}/stops": {
+			"get": {
+				"description": "Get stops included in the route.",
+				"summary": "GetStopsForRoute",
+				"tags": [
+					"Routes"
+				],
+				"operationId": "StopsForRouteGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+					"name": "route",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			},
+			"/routes/{route}/stops/{stop}": {
+				"get": {
+					"description": "Get stop details from the route.",
+					"summary": "GetStopForRoute",
+					"tags": [
+						"Routes"
+					],
+					"operationId": "StopForRouteGet",
+					"deprecated": false,
+					"produces": [
+						"application/json"
+					],
+					"parameters": [{
+						"name": "route",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					},
+					{
+						"name": "stop",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					}],
+					"responses": {
+						"200": {
+							"description": "",
+							"headers": {}
+						}
+					}
+				}
+			}
 		}
 	},
 	"tags": [{
@@ -370,6 +554,9 @@
 		},
 		{
 			"name": "Transaltions"
+		},
+		{
+			"name": "Routes"
 		}
 	]
 }
