@@ -7,7 +7,8 @@ This is an API helping me and you implementing the OASA API in a more normal way
 
 Public API and Swagger URL: api.oasa-telematics.com/v1/
 
-__WARNING: The API is not ready yet so some endpoints may be missing.__
+~~WARNING: The API is not ready yet so some endpoints may be missing.~~
+__NOW LIVE__
 
 ## Getting started
 
