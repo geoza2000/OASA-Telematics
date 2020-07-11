@@ -25,6 +25,7 @@ module.exports = (req, res, next) => {
                 response.forEach(route => {
                     schedules.push({
                         code: route["sdc_code"],
+                        active: route[""] == 1 ? true : false,
                         desc: {
                             el: route["sdc_descr"],
                             en: route["sdc_descr_eng"]
