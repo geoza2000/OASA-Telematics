@@ -132,6 +132,101 @@
 				}
 			}
 		},
+		"/lines/{line}/schedules": {
+			"get": {
+				"description": "Get all available schedules for a line.",
+				"summary": "GetSchedulesForLine",
+				"tags": [
+					"Schedules"
+				],
+				"operationId": "SchedulesForLineGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "line",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/lines/{line}/schedules/daily": {
+			"get": {
+				"description": "Get daily(todays) available schedule for a line.",
+				"summary": "GetDailyScheduleForLine",
+				"tags": [
+					"Schedules"
+				],
+				"operationId": "DailyScheduleForLineGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "line",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
+		"/lines/{line}/schedules/{schedule}": {
+			"get": {
+				"description": "Get schedule details for a line.",
+				"summary": "GetScheduleDetailsForLine",
+				"tags": [
+					"Schedules"
+				],
+				"operationId": "ScheduleDetailsForLineGet",
+				"deprecated": false,
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "line",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					},
+					{
+						"name": "schedule",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"format": "int32",
+						"description": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"headers": {}
+					}
+				}
+			}
+		},
 		"/stops/nearby": {
 			"get": {
 				"description": "Find nearby stops.",
@@ -545,6 +640,9 @@
 	},
 	"tags": [{
 			"name": "Lines"
+		},
+		{
+			"name": "Schedules"
 		},
 		{
 			"name": "Stops"
