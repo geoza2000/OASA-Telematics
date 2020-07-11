@@ -35,7 +35,7 @@ module.exports = (req, res) => {
             }
 
             if (BUS_CODE) {
-                data.data = data.data.find(bus => bus.code == STOP_CODE)
+                data.data = data.data.find(bus => bus.code == BUS_CODE)
             }
 
             if (data.data) {
