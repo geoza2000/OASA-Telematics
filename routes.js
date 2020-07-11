@@ -8,6 +8,9 @@ const swaggerDocument = require('./swagger.json');
 //Constrollers
 const lines = require('./controllers/lines/lines')
 const lineRoutes = require('./controllers/lines/routes/routes')
+const lineSchedules = require('./controllers/lines/schedules/getSchedules')
+const lineDailySchedule = require('./controllers/lines/schedules/getDailySchedule')
+const lineScheduleDetails = require('./controllers/lines/schedules/getScheduleDetails')
 
 const masterlines = require('./controllers/masterlines/masterlines')
 
@@ -34,6 +37,9 @@ router.get('/lines', lines)
 router.get('/lines/:line', lines)
 router.get('/lines/:line/routes', lineRoutes)
 router.get('/lines/:line/routes/:route', lineRoutes)
+router.get('/lines/:line/schedules', lineSchedules)
+router.get('/lines/:line/schedules/daily', lineDailySchedule)
+router.get('/lines/:line/schedules/:schedule', lineScheduleDetails)
 
 router.get('/masterlines', masterlines)
 router.get('/masterlines/:masterline', masterlines)
