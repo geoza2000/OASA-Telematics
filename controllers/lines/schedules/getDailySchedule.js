@@ -22,6 +22,10 @@ module.exports = (req, res, next) => {
 
             let dailySchedule = {}
             if (response) {
+                if (response.go[0] == null) {
+                    error.notFound(res)
+                    return
+                }
                 dailySchedule.circle = (response.go[0].line_circle || 0) == 1 ? true : false
                 if (response.go) {
                     dailySchedule.line = {
