@@ -35,8 +35,10 @@ module.exports = (req, res, next) => {
                     }
                     let schedules = []
                     response.go.forEach(schedule => {
+                        let time = schedule["sde_start1"].split(' ')[1].split(':')
+                        time.pop()
                         schedules.push({
-                            time: schedule["sde_start1"].split(' ')[1].split(':').pop().join(':'),
+                            time: time.join(':'),
                             remarks: schedule["remarks"],
                         })
                     })
@@ -48,9 +50,11 @@ module.exports = (req, res, next) => {
                 if (response.come) {
                     let schedules = []
                     response.come.forEach(schedule => {
+                        let time = schedule["sde_start2"].split(' ')[1].split(':')
+                        time.pop()
                         schedules.push({
-                            time: schedule["sde_start2"].split(' ')[1].split(':').pop().join(':'),
-                            remarks: schedule["remarks"]
+                            time: time.join(':'),
+                            remarks: schedule["remarks"],
                         })
                     })
                     if (schedules.length > 0) {
