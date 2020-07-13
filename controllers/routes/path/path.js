@@ -35,8 +35,8 @@ module.exports = (req, res) => {
                         order: point["routed_order"],
                         location: {
                             coords: {
-                                lat: point["routed_x"],
-                                lng: point["routed_y"]
+                                lat: point["routed_y"],
+                                lng: point["routed_x"]
                             }    
                         }
                     })
