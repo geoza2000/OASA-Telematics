@@ -28,7 +28,7 @@ const buses = require('./controllers/routes/buses/buses')
 const translations = require('./controllers/translations/translations')
 
 router.all('/', function(req, res) {
-    res.redirect('/api-docs');
+    res.redirect('/v1/api-docs');
 })
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 router.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
