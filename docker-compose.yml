@@ -1,7 +1,7 @@
 version: "3.7"
 
 networks:
-  nginx:
+  proxy:
     external: true
 
 services: 
@@ -12,10 +12,8 @@ services:
       context: ./
       dockerfile: Dockerfile
     restart: always
-    ports: 
-      - "3000:3000"
     networks: 
-      - nginx
+      - proxy
     labels:
       - "traefik.enable=true" # <== Enable traefik to proxy this container
       - "traefik.http.routers.nginx-secured.rule=Host(`api.oasa-telematics.com`)" # <== Your Domain Name for the https rule 
