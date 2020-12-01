@@ -16,6 +16,6 @@ const app = express()
 cache.init()
 
 app.use('/', routes)
-app.use('/', function(req, res) { res.redirect('/v1') })
+app.use('/v1', function(req, res) { res.redirect('/v1') })
 
 app.listen(PORT, () => console.log('OASA listening on port ' + PORT))
