@@ -16,3 +16,8 @@ services:
       - "3000:3000"
     networks: 
       - nginx
+    labels:
+      - "traefik.enable=true" # <== Enable traefik to proxy this container
+      - "traefik.http.routers.nginx-secured.rule=Host(`api.oasa-telematics.com`)" # <== Your Domain Name for the https rule 
+      - "traefik.http.routers.nginx-secured.entrypoints=web-secured" # <== Defining entrypoint for https, **ref: line 31
+      - "traefik.http.routers.nginx-secured.tls.certresolver=mytlschallenge" # <== Defining certsresolvers for https
